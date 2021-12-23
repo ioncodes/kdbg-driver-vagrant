@@ -4,6 +4,8 @@ _Based off of [this](https://secret.club/2020/04/10/kernel_debugging_in_seconds.
 
 [my gist](https://gist.github.com/ioncodes/2383d35fe7ddf8d52333f7cb0b1e6a85)
 
+**My current set up uses a slightly different approach which is described [here](fast/).**
+
 ## Setup
 
 1. Install the [VMWare Vagrant Utility](https://www.vagrantup.com/vmware/downloads). Reboot your machine afterwards.
