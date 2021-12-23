@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+  config.vm.guest = :windows		# tell Vagrant this is a Windows-based guest
+  config.vm.communicator = "winrm"	# use winrm for management instead of ssh
+  config.vm.provider 'vmware_workstation' do |p|
+    p.linked_clone = false
+  end
+  config.vm.provider :vmware_desktop do |p|
+    p.vmx["ethernet0.pcislotnumber"] = "160"
+  end
+
+  config.winrm.password = "vagrant"	# the credentials specified during OS install
+  config.winrm.username = "vagrant"
+  
+  config.vm.define "win10" do |win10|
+    win10.vm.box = "layle/win10pro"	# edit this to be the name of the box you created
+    
+    win10.vm.provision "shell", path: "guest/kdbg.bat"			# this batch file will be run inside the VM
+    win10.vm.network :forwarded_port, guest: 49152, host: 53390		# expose kernel debugging port to host
+    win10.vm.network :forwarded_port, guest: 3389, host: 53389     # expose RDP port to host
+  end
+end
