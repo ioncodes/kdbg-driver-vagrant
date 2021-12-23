@@ -1,0 +1,3 @@
+vagrant up --provider vmware_workstation
+set /p DUMMY=Hit ENTER to continue...
+vagrant powershell --command "schtasks /run /tn vagrantonboot"
